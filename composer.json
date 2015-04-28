@@ -1,0 +1,22 @@
+{
+  "name": "phpffcms/ffcms-console",
+  "description": "Console mini-core package for FFCMS 3 version",
+  "type": "library",
+  "keywords": ["php", "console", "ffcms"],
+  "homepage": "http://ffcms.org",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pyatinskyi M.M.",
+      "email": "zenn1989@gmail.com",
+      "homepage": "http://ffcms.ru"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+	"phpffcms/ffcms-core": "dev-master",
+  },
+  "autoload": {
+    "psr-0": { "Ffcms\\": "src/" }
+  }
+}
