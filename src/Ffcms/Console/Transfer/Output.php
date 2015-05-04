@@ -11,7 +11,7 @@ class Output
      */
     public function writeHeader($text)
     {
-        return '     ->' . $this->write($text);
+        return "\t->" . $this->write($text);
     }
 
     /**

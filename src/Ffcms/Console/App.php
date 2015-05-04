@@ -2,19 +2,19 @@
 
 namespace Ffcms\Console;
 
-use Core\Exception\NativeException;
-use \Core\Property;
-use \Console\Transfer\Input;
-use \Console\Transfer\Output;
-
+use Ffcms\Core\Exception\NativeException;
+use Ffcms\Core\Property;
+use Ffcms\Console\Transfer\Input;
+use Ffcms\Console\Transfer\Output;
+use \Illuminate\Database\Capsule\Manager as Capsule;
 
 class App
 {
-    /** @var \Core\Property */
+    /** @var \Ffcms\Core\Property */
 	public static $Property;
-    /** @var \Console\Transfer\Input */
+    /** @var \Ffcms\Console\Transfer\Input */
     public static $Input;
-    /** @var \Console\Transfer\Output */
+    /** @var \Ffcms\Console\Transfer\Output */
     public static $Output;
 
     /**
@@ -25,6 +25,18 @@ class App
 		self::$Property = new Property();
         self::$Input = new Input();
         self::$Output = new Output();
+
+        // establish database link
+        if (is_array(self::$Property->get('database'))) {
+            $capsule = new Capsule;
+            $capsule->addConnection(self::$Property->get('database'));
+
+            // Make this Capsule instance available globally via static methods... (optional)
+            $capsule->setAsGlobal();
+
+            // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+            $capsule->bootEloquent();
+        }
 	}
 
     /**
@@ -49,10 +61,10 @@ class App
             $id = $argv[2];
 
             try {
-                $controller_path = '/controller/' . workground . '/' . $controller . '.php';
+                $controller_path = '/Apps/Controller/' . workground . '/' . $controller . '.php';
                 if(file_exists(root . $controller_path) && is_readable(root . $controller_path)) {
                     include_once(root . $controller_path);
-                    $cname = 'Controller\\' . workground . '\\' . $controller;
+                    $cname = 'Apps\\Controller\\' . workground . '\\' . $controller;
                     if(class_exists($cname)) {
                         $load = new $cname;
                         if(method_exists($cname, $action)) {
