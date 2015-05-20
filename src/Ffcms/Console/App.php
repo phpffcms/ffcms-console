@@ -16,6 +16,8 @@ class App
     public static $Input;
     /** @var \Ffcms\Console\Transfer\Output */
     public static $Output;
+    /** @var \Illuminate\Database\Capsule\Manager */
+    public static $Database;
 
     /**
      * Build console entry point
@@ -28,14 +30,14 @@ class App
 
         // establish database link
         if (is_array(self::$Property->get('database'))) {
-            $capsule = new Capsule;
-            $capsule->addConnection(self::$Property->get('database'));
+            self::$Database = new Capsule;
+            self::$Database->addConnection(self::$Property->get('database'));
 
             // Make this Capsule instance available globally via static methods... (optional)
-            $capsule->setAsGlobal();
+            self::$Database->setAsGlobal();
 
             // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
-            $capsule->bootEloquent();
+            self::$Database->bootEloquent();
         }
 	}
 
@@ -61,10 +63,10 @@ class App
             $id = $argv[2];
 
             try {
-                $controller_path = '/Apps/Controller/' . workground . '/' . $controller . '.php';
+                $controller_path = '/Apps/Controller/' . env_name . '/' . $controller . '.php';
                 if(file_exists(root . $controller_path) && is_readable(root . $controller_path)) {
                     include_once(root . $controller_path);
-                    $cname = 'Apps\\Controller\\' . workground . '\\' . $controller;
+                    $cname = 'Apps\\Controller\\' . env_name . '\\' . $controller;
                     if(class_exists($cname)) {
                         $load = new $cname;
                         if(method_exists($cname, $action)) {
