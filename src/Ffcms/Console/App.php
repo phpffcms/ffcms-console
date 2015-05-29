@@ -76,17 +76,17 @@ class App
                                 $output = @$load->$action();
                             }
                         } else {
-                            throw new \Exception('Method ' . $action . '() not founded in ' . $cname . ' in file {root}' . $controller_path);
+                            throw new NativeException('Method ' . $action . '() not founded in ' . $cname . ' in file {root}' . $controller_path);
                         }
                         unset($load);
                     } else {
-                        throw new \Exception('Namespace\\Class - ' . $cname . ' not founded in {root}' . $controller_path);
+                        throw new NativeException('Namespace\\Class - ' . $cname . ' not founded in {root}' . $controller_path);
                     }
                 } else {
-                    throw new \Exception('Controller not founded: {root}' . $controller_path);
+                    throw new NativeException('Controller not founded: {root}' . $controller_path);
                 }
-            } catch(\Exception $e) {
-                new NativeException($e);
+            } catch(NativeException $e) {
+                $e->display($e->getMessage());
             }
         }
 
