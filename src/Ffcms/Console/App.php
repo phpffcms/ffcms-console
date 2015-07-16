@@ -50,7 +50,7 @@ class App
         global $argv;
         $output = null;
         if ($argv[1] == null) {
-            $output = 'Console command is unknown! Type "php console.php main/help" to get help guide';
+            $output = 'Console command is unknown! Type "console main/help" to get help guide';
         } else {
             $controller_action = $argv[1];
             $arrInput = explode('/', $controller_action);
