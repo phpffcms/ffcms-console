@@ -59,8 +59,12 @@ class App
             if($action == null) {
                 $action = 'Index';
             }
+            // set action and id
             $action = 'action' . $action;
-            $id = $argv[2];
+            $id = null;
+            if (isset($argv[2])) {
+                $id = $argv[2];
+            }
 
             try {
                 $controller_path = '/Apps/Controller/' . env_name . '/' . $controller . '.php';
