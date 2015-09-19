@@ -5,15 +5,15 @@ namespace Ffcms\Console;
 use Ffcms\Core\Exception\NativeException;
 use Ffcms\Core\Helper\Type\Object;
 use Ffcms\Core\Helper\Type\String;
-use Ffcms\Core\Property;
+use Ffcms\Core\Properties;
 use Ffcms\Console\Transfer\Input;
 use Ffcms\Console\Transfer\Output;
 use \Illuminate\Database\Capsule\Manager as Capsule;
 
 class App
 {
-    /** @var \Ffcms\Core\Property */
-	public static $Property;
+    /** @var \Ffcms\Core\Properties */
+	public static $Properties;
     /** @var \Ffcms\Console\Transfer\Input */
     public static $Input;
     /** @var \Ffcms\Console\Transfer\Output */
@@ -26,14 +26,14 @@ class App
      */
 	public static function build()
 	{
-		self::$Property = new Property();
+		self::$Properties = new Properties();
         self::$Input = new Input();
         self::$Output = new Output();
 
         // establish database link
-        if (is_array(self::$Property->get('database'))) {
+        if (is_array(self::$Properties->get('database'))) {
             self::$Database = new Capsule;
-            self::$Database->addConnection(self::$Property->get('database'));
+            self::$Database->addConnection(self::$Properties->get('database'));
 
             // Make this Capsule instance available globally via static methods... (optional)
             self::$Database->setAsGlobal();
