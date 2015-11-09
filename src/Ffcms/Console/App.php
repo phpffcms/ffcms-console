@@ -3,8 +3,8 @@
 namespace Ffcms\Console;
 
 use Ffcms\Core\Exception\NativeException;
-use Ffcms\Core\Helper\Type\Object;
-use Ffcms\Core\Helper\Type\String;
+use Ffcms\Core\Helper\Type\Obj;
+use Ffcms\Core\Helper\Type\Str;
 use Ffcms\Core\Properties;
 use Ffcms\Console\Transfer\Input;
 use Ffcms\Console\Transfer\Output;
@@ -51,7 +51,7 @@ class App
     {
         global $argv;
         $output = null;
-        if (!Object::isArray($argv) || String::likeEmpty($argv[1])) {
+        if (!Obj::isArray($argv) || Str::likeEmpty($argv[1])) {
             $output = 'Console command is unknown! Type "console main/help" to get help guide';
         } else {
             $controller_action = $argv[1];
