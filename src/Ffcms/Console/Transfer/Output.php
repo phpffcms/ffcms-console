@@ -5,13 +5,22 @@ namespace Ffcms\Console\Transfer;
 class Output
 {
     /**
-     * Write console header for action
+     * Write console text with tab offset
      * @param string $text
+     * @return string
+     */
+    public function writeTab($text)
+    {
+        return "\t->" . $this->write($text);
+    }
+
+    /**
+     * @param $text
      * @return string
      */
     public function writeHeader($text)
     {
-        return "\t->" . $this->write($text);
+        return '=== ' . strip_tags((string)$text) . ' ===' . "\n";
     }
 
     /**

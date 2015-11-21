@@ -96,7 +96,7 @@ class App
             }
         }
 
-        return $output;
+        return App::$Output->write($output);
     }
 	
 }
