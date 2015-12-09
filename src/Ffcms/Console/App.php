@@ -23,15 +23,16 @@ class App
 
     /**
      * Build console entry point
+     * @param array|null $services
      */
-	public static function build()
+	public static function init(array $services = null)
 	{
 		self::$Properties = new Properties();
         self::$Input = new Input();
         self::$Output = new Output();
 
         // establish database link
-        if (is_array(self::$Properties->get('database'))) {
+        if (Obj::isArray(self::$Properties->get('database')) && (isset($services['Database']) && $services['Database'] === true || $services === null)) {
             self::$Database = new Capsule;
             self::$Database->addConnection(self::$Properties->get('database'));
 
@@ -47,7 +48,7 @@ class App
      * Build console controllers.
      * php console.php Controller/Action index
      */
-    public static function display()
+    public static function run()
     {
         global $argv;
         $output = null;
