@@ -10,7 +10,7 @@ use Ffcms\Console\Transfer\Input;
 use Ffcms\Console\Transfer\Output;
 use \Illuminate\Database\Capsule\Manager as Capsule;
 
-class App
+class Console
 {
     /** @var \Ffcms\Core\Properties */
 	public static $Properties;
@@ -24,6 +24,7 @@ class App
     /**
      * Build console entry point
      * @param array|null $services
+     * @throws \Ffcms\Core\Exception\NativeException
      */
 	public static function init(array $services = null)
 	{
@@ -73,7 +74,7 @@ class App
                 $controller_path = '/Apps/Controller/' . env_name . '/' . $controller . '.php';
                 if(file_exists(root . $controller_path) && is_readable(root . $controller_path)) {
                     include_once(root . $controller_path);
-                    $cname = 'Apps\\Controller\\' . env_name . '\\' . $controller;
+                    $cname = 'Apps\Controller\\' . env_name . '\\' . $controller;
                     if(class_exists($cname)) {
                         $load = new $cname;
                         if(method_exists($cname, $action)) {
@@ -97,7 +98,7 @@ class App
             }
         }
 
-        return App::$Output->write($output);
+        return self::$Output->write($output);
     }
 	
 }

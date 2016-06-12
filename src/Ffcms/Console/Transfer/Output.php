@@ -20,7 +20,7 @@ class Output
      */
     public function writeHeader($text)
     {
-        return '=== ' . strip_tags((string)$text) . ' ===' . "\n";
+        return '=== ' . strip_tags((string)$text) . ' ===' . PHP_EOL;
     }
 
     /**
@@ -30,6 +30,6 @@ class Output
      */
     public function write($text)
     {
-        return strip_tags((string)$text) . "\n";
+        return strip_tags((string)$text) . PHP_EOL;
     }
 }
