@@ -1,4 +1,5 @@
 {
+  "version": "1.0.0-beta",
   "name": "phpffcms/ffcms-console",
   "description": "Console mini-core package for FFCMS 3 version",
   "type": "library",
@@ -18,7 +19,7 @@
   ],
   "require": {
     "php": ">=5.5",
-    "phpffcms/ffcms-core": "dev-master"
+    "phpffcms/ffcms-core": "1.0.*"
   },
   "autoload": {
     "psr-0": {"Ffcms\\": "src/"}
