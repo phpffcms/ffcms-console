@@ -10,14 +10,14 @@ use Ffcms\Console\Transfer\Input;
 use Ffcms\Console\Transfer\Output;
 use \Illuminate\Database\Capsule\Manager as Capsule;
 
+/**
+ * Class Console. Console instance to use database, properties and other default features
+ * @package Ffcms\Console
+ */
 class Console
 {
     /** @var \Ffcms\Core\Properties */
 	public static $Properties;
-    /** @var \Ffcms\Console\Transfer\Input */
-    public static $Input;
-    /** @var \Ffcms\Console\Transfer\Output */
-    public static $Output;
     /** @var \Illuminate\Database\Capsule\Manager */
     public static $Database;
 
@@ -28,8 +28,6 @@ class Console
     public function __construct(array $services = null)
     {
         self::$Properties = new Properties();
-        self::$Input = new Input();
-        self::$Output = new Output();
 
         // establish database link
         if (Obj::isArray(self::$Properties->get('database')) && (isset($services['Database']) && $services['Database'] === true || $services === null)) {
