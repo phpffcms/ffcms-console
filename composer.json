@@ -1,7 +1,6 @@
 {
-  "version": "1.0.0-beta",
   "name": "phpffcms/ffcms-console",
-  "description": "Console mini-core package for FFCMS 3 version",
+  "description": "Micro core for command line applications in ffcms 3 environment under symfony-console extend package",
   "type": "library",
   "keywords": [
     "php",
@@ -13,13 +12,14 @@
   "authors": [
     {
       "name": "Pyatinskyi M.M.",
-      "email": "zenn1989@gmail.com",
+      "email": "zenn@ffcms.org",
       "homepage": "http://ffcms.ru"
     }
   ],
   "require": {
     "php": ">=5.5",
-    "phpffcms/ffcms-core": "1.0.*"
+    "phpffcms/ffcms-core": "1.0.*",
+    "symfony/console": "2.8.*@stable"
   },
   "autoload": {
     "psr-0": {"Ffcms\\": "src/"}

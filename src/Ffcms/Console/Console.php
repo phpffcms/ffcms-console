@@ -22,13 +22,12 @@ class Console
     public static $Database;
 
     /**
-     * Build console entry point
+     * Console constructor. Create new entry point instance
      * @param array|null $services
-     * @throws \Ffcms\Core\Exception\NativeException
      */
-	public static function init(array $services = null)
-	{
-		self::$Properties = new Properties();
+    public function __construct(array $services = null)
+    {
+        self::$Properties = new Properties();
         self::$Input = new Input();
         self::$Output = new Output();
 
@@ -43,62 +42,15 @@ class Console
             // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
             self::$Database->bootEloquent();
         }
-	}
+    }
 
     /**
-     * Build console controllers.
-     * php console.php Controller/Action index
+     * Build console instance factory
+     * @param array|null $services
+     * @return Console
      */
-    public static function run()
+    public static function factory(array $services = null)
     {
-        global $argv;
-        $output = null;
-        if (!Obj::isArray($argv) || Str::likeEmpty($argv[1])) {
-            $output = 'Console command is unknown! Type "console main/help" to get help guide';
-        } else {
-            $controller_action = $argv[1];
-            $arrInput = explode('/', $controller_action);
-            $controller = ucfirst(strtolower($arrInput[0]));
-            $action = ucfirst(strtolower($arrInput[1]));
-            if($action == null) {
-                $action = 'Index';
-            }
-            // set action and id
-            $action = 'action' . $action;
-            $id = null;
-            if (isset($argv[2])) {
-                $id = $argv[2];
-            }
-
-            try {
-                $controller_path = '/Apps/Controller/' . env_name . '/' . $controller . '.php';
-                if(file_exists(root . $controller_path) && is_readable(root . $controller_path)) {
-                    include_once(root . $controller_path);
-                    $cname = 'Apps\Controller\\' . env_name . '\\' . $controller;
-                    if(class_exists($cname)) {
-                        $load = new $cname;
-                        if(method_exists($cname, $action)) {
-                            if($id !== null) {
-                                $output = @$load->$action($id);
-                            } else {
-                                $output = @$load->$action();
-                            }
-                        } else {
-                            throw new NativeException('Method ' . $action . '() not founded in ' . $cname . ' in file {root}' . $controller_path);
-                        }
-                        unset($load);
-                    } else {
-                        throw new NativeException('Namespace\\Class - ' . $cname . ' not founded in {root}' . $controller_path);
-                    }
-                } else {
-                    throw new NativeException('Controller not founded: {root}' . $controller_path);
-                }
-            } catch(NativeException $e) {
-                $e->display($e->getMessage());
-            }
-        }
-
-        return self::$Output->write($output);
+        return new self($services);
     }
-	
 }
