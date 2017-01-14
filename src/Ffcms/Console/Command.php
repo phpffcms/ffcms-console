@@ -87,4 +87,13 @@ class Command extends SymfonyCommand
 
         return $value;
     }
+
+    /**
+     * Get input option value
+     * @param string $name
+     * @return string|null
+     */
+    public function option($name) {
+        return $this->input->getOption($name);
+    }
 }
