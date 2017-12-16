@@ -17,9 +17,9 @@
     }
   ],
   "require": {
-    "php": ">=5.5",
+    "php": ">=7.1",
     "phpffcms/ffcms-core": "1.0.*",
-    "symfony/console": "2.8.*@stable"
+    "symfony/console": "3.4.*@stable"
   },
   "autoload": {
     "psr-0": {"Ffcms\\": "src/"}
