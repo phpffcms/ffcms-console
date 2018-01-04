@@ -3,6 +3,7 @@
 namespace Ffcms\Console;
 
 use Ffcms\Core\Exception\NativeException;
+use Ffcms\Core\Helper\Type\Any;
 use Ffcms\Core\Helper\Type\Obj;
 use Ffcms\Core\Helper\Type\Str;
 use Ffcms\Core\Properties;
@@ -30,7 +31,7 @@ class Console
         self::$Properties = new Properties();
 
         // establish database link
-        if (Obj::isArray(self::$Properties->get('database')) && (isset($services['Database']) && $services['Database'] === true || $services === null)) {
+        if (Any::isArray(self::$Properties->get('database')) && (isset($services['Database']) && $services['Database'] === true || $services === null)) {
             self::$Database = new Capsule;
             self::$Database->addConnection(self::$Properties->get('database'));
 
