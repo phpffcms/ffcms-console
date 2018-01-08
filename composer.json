@@ -22,6 +22,8 @@
     "symfony/console": "3.4.*@stable"
   },
   "autoload": {
-    "psr-0": {"Ffcms\\": "src/"}
+    "psr-4": {
+      "Ffcms\\Console\\": "src/"
+    }
   }
 }
