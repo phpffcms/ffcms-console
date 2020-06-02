@@ -1,29 +1,27 @@
 {
-  "name": "phpffcms/ffcms-console",
-  "description": "Micro core for command line applications in ffcms 3 environment under symfony-console extend package",
-  "type": "library",
-  "keywords": [
-    "php",
-    "console",
-    "ffcms"
-  ],
-  "homepage": "http://ffcms.org",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Pyatinskyi M.M.",
-      "email": "zenn@ffcms.org",
-      "homepage": "http://ffcms.ru"
+    "name": "phpffcms/ffcms-console",
+    "description": "Micro core for command line applications in ffcms 3 environment under symfony-console extend package",
+    "type": "library",
+    "keywords": [
+        "php",
+        "console",
+        "ffcms"
+    ],
+    "homepage": "http://pmcore.ru",
+    "license": "MIT",
+    "authors": [{
+        "name": "Piatinskii M.M.",
+        "email": "zenn@ffcms.org",
+        "homepage": "http://pmcore.ru"
+    }],
+    "require": {
+        "php": ">=7.1",
+        "phpffcms/ffcms-core": "1.1.*",
+        "symfony/console": "5.1.*@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ffcms\\Console\\": "src/"
+        }
     }
-  ],
-  "require": {
-    "php": ">=7.1",
-    "phpffcms/ffcms-core": "@dev",
-    "symfony/console": "3.4.*@stable"
-  },
-  "autoload": {
-    "psr-4": {
-      "Ffcms\\Console\\": "src/"
-    }
-  }
 }
