@@ -17,7 +17,7 @@
     "require": {
         "php": ">=7.1",
         "phpffcms/ffcms-core": "1.1.*",
-        "symfony/console": "5.1.*@stable"
+        "symfony/console": "5.4.*@stable"
     },
     "autoload": {
         "psr-4": {
