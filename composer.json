@@ -15,8 +15,8 @@
         "homepage": "http://pmcore.ru"
     }],
     "require": {
-        "php": ">=7.1",
-        "phpffcms/ffcms-core": "1.1.*",
+        "php": "^8.0",
+        "phpffcms/ffcms-core": "1.2.*",
         "symfony/console": "5.4.*@stable"
     },
     "autoload": {
